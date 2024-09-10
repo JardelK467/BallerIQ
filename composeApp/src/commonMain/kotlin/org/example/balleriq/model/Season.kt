@@ -8,8 +8,3 @@ data class Season(
     @SerialName("seasons")
     val seasons: List<String>
 )
-
-data class Season(
-    @SerialName("seasons")
-    val seasons: List<String>
-)
