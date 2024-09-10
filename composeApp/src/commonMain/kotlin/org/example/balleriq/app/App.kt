@@ -1,4 +1,4 @@
-package org.example.balleriq
+package org.example.balleriq.app
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -15,6 +15,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import balleriq.composeapp.generated.resources.Res
 import balleriq.composeapp.generated.resources.compose_multiplatform
+import org.example.balleriq.Greeting
 
 @Composable
 @Preview
