@@ -1,4 +1,4 @@
-package org.example.balleriq.model
+package org.example.balleriq.data.repository.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,7 +14,7 @@ data class League(
     @SerialName("type")
     val type: String,
     @SerialName("season")
-    val season: Season,
+    val season: String,
     @SerialName("code")
     val code: String
 )
