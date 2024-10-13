@@ -5,6 +5,9 @@ import androidx.compose.ui.window.application
 import org.example.balleriq.app.App
 
 fun main() = application {
+
+    initKoin{}
+
     Window(
         onCloseRequest = ::exitApplication,
         title = "BallerIQ",
