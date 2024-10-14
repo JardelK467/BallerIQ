@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ktlint)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -17,32 +18,31 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-
         }
         commonMain.dependencies {
-            //Compose
+            // Compose
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -53,16 +53,15 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.serialization.json)
 
-            //ktor
+            // ktor
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.cio)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
 
-            //Koin
+            // Koin
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
-
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -72,7 +71,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.balleriq"
+    namespace = "com.balleriq"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -80,7 +79,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "org.example.balleriq"
+        applicationId = "com.balleriq"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -110,12 +109,25 @@ android {
 
 compose.desktop {
     application {
-        mainClass = "org.example.balleriq.MainKt"
+        mainClass = "com.balleriq.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "org.example.balleriq"
+            packageName = "com.balleriq"
             packageVersion = "1.0.0"
+        }
+    }
+}
+
+ktlint {
+    version.set("1.2.1") // This is the most recent KtLint version as of March 2024
+    verbose.set(true) // This gives more information about the KtLint checks
+    outputToConsole.set(true) // This sends the KtLint output to the console
+    outputColorName.set("RED") // This sets the color of the KtLint output to red
+    ignoreFailures.set(true) // This ignores the KtLint failures
+    filter {
+        exclude {
+            projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/")
         }
     }
 }
