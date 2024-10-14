@@ -1,0 +1,32 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches: [ main, feature ]
+  
+jobs:
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Run KtLint
+        run: ./gradlew ktlintCheck
+
+      - name: Upload KtLint report
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: ktlint-report
+          path: '**/build/reports/ktlint/**/*.txt'
