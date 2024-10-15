@@ -1,14 +1,14 @@
 package com.balleriq.core.di
 
+import com.balleriq.core.data.repository.GameRepositoryImpl
+import com.balleriq.core.data.repository.LeagueRepositoryImpl
+import com.balleriq.core.data.repository.PlayerRepositoryImpl
+import com.balleriq.core.data.repository.TeamRepositoryImpl
+import com.balleriq.core.domain.repository.GameRepository
+import com.balleriq.core.domain.repository.LeagueRepository
+import com.balleriq.core.domain.repository.PlayerRepository
+import com.balleriq.core.domain.repository.TeamRepository
 import com.balleriq.core.network.BasketballAPI
-import com.balleriq.data.repository.GameRepositoryImpl
-import com.balleriq.data.repository.LeagueRepositoryImpl
-import com.balleriq.data.repository.PlayerRepositoryImpl
-import com.balleriq.data.repository.TeamRepositoryImpl
-import com.balleriq.domain.repository.GameRepository
-import com.balleriq.domain.repository.LeagueRepository
-import com.balleriq.domain.repository.PlayerRepository
-import com.balleriq.domain.repository.TeamRepository
 import org.koin.dsl.module
 
 val appModule =

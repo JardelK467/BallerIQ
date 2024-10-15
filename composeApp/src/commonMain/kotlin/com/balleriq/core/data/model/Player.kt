@@ -1,4 +1,4 @@
-package com.balleriq.data.repository.model
+package com.balleriq.core.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
