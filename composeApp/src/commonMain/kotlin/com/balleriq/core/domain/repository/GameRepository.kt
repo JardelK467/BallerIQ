@@ -1,6 +1,6 @@
-package com.balleriq.domain.repository
+package com.balleriq.core.domain.repository
 
-import com.balleriq.data.repository.model.Game
+import com.balleriq.core.data.model.Game
 
 interface GameRepository {
     suspend fun getGames(
