@@ -14,6 +14,7 @@
 - **Compose Multiplatform**: Unified UI components for Android and other platforms
 - **Jetpack Compose**: Modern UI framework for Android
 - **Kotlin**: Language for app development
+- **Room**: SQLite database for offline support
 - **Ktor**: For potential data export/import capabilities
 - **Koin**: Dependency injection framework
 - **MVVM Architecture**: For managing UI state and data handling
